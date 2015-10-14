@@ -68,3 +68,18 @@ plot(x,y)
 plot(x,y, type="n")
 points(x[g=="Male"],y[g=="Male"], col= "Green")
 points(x[g=="Female"],y[g=="Female"], col= "Blue", pch= 19)
+
+
+##Create plot
+library(datasets)
+with(faithful, plot(eruptions, waiting))
+title(main = "Old Faithful Geyser Data")
+
+##How to convert to PDF
+pdf(file = "myplot.pdf")
+with(faithful, plot(eruptions, waiting))
+title(main = "Old Faithful Geyser Data")
+dev.off()
+
+##Different types available
+##png, jpeg, tiff, bmp, pdf, svg, win.metafile, postscript

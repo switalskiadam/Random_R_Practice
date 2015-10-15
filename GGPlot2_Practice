@@ -1,1 +1,12 @@
+library(ggplot2)
+str(mpg)
 
+qplot(displ, hwy, data=mpg)
+qplot(displ, hwy, data=mpg, color = drv)
+##Add statistical info in
+qplot(displ, hwy, data=mpg, geom= c("point", "smooth"))
+##Histogram
+qplot(hwy, data = mpg, fill=drv)
+##Facets the dot depicts how the grahs are populated
+qplot(displ, hwy, data=mpg, facets =. ~drv)
+qplot(hwy, data=mpg, facets= drv ~ ., binwidth = 2)

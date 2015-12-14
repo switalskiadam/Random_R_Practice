@@ -1,0 +1,66 @@
+##Grabbing data from a webpage
+setwd("C:/Users/aswitalski/Desktop/R")
+if(!file.exists("./data")){dir.create("./data")}
+fileURL <- "https://data.baltimorecity.gov/api/view/k5ry-ef3g/rows.csv?accessType=DOWNLOAD"
+download.file(fileURL,destfile = "./data/restaurants.csv")
+restData <- read.csv("./data/restaurants.csv")
+
+##Quick summarizing commands
+head(restData,n=3)
+
+tail(restData, n=3)
+
+summary(restData)
+
+str(restData)
+
+quantile(restData$councilDistrict,na.rm=TRUE)
+quantile(restData$councilDistrict,probs=c(0.5,0.75,0.9))
+
+table(restData$zipCode,useNA="ifany")
+##ifany will summarize the number of NAs
+
+table(restData$councilDistrict,restData$zipCode)
+
+##Check for missing values
+sum(is.na(restData$councilDistrict))
+any(is.na(restData$councilDistrict))
+all(restData$zipCode > 0)
+
+colSums(is.na(restData))
+all(colSums(is.na(restData))==0)
+
+##How many zip codes in the set are 21212?
+table(restData$zipCode %in% c("21212"))
+
+table(restData$zipCode %in% c("21212","21213"))
+
+##Pull all restaurant data in 21212 or 21213 zips
+restData[restData$zipCode %in% c("21212","21213"),]
+
+
+##Crosstabs
+
+data("UCBAdmissions")
+DF = as.data.frame(UCBAdmissions)
+summary(DF)
+
+##Admission breakdown by freq of gender
+xt <-xtabs(Freq~Gender + Admit, data=DF)
+xt
+
+##Turning multiple small tables into one
+data("warpbreaks")
+df2 = as.data.frame(warpbreaks)
+df2
+
+warpbreaks$replicate <- rep(1:9, len=54)
+xt = xtabs(breaks ~.,data = warpbreaks)
+xt
+
+ftable(xt)
+
+##Size of dataset
+fakeData = rnorm(1e5)
+object.size(fakeData)
+print(object.size(fakeData),units="Mb")

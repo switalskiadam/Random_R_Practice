@@ -1,12 +1,13 @@
 ##Grabbing data from a webpage
 setwd("C:/Users/aswitalski/Desktop/R")
 if(!file.exists("./data")){dir.create("./data")}
-fileURL <- "https://data.baltimorecity.gov/api/view/k5ry-ef3g/rows.csv?accessType=DOWNLOAD"
+fileURL <- "https://data.baltimorecity.gov/resource/k5ry-ef3g.csv"
 download.file(fileURL,destfile = "./data/restaurants.csv")
 restData <- read.csv("./data/restaurants.csv")
 
 ##Quick summarizing commands
 head(restData,n=3)
+
 
 tail(restData, n=3)
 

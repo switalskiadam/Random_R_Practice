@@ -1,0 +1,80 @@
+## Editing Text Variables
+
+setwd("C:/Users/aswitalski/Desktop/R")
+
+if(!file.exists("./data")){dir.create("./data")}
+fileUrl <- 'http://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accessType=DOWNLOAD'
+download.file(fileUrl,destfile="./data/cameras.csv")
+cameraData <- read.csv("./data/cameras.csv")
+names(cameraData) ##shows headers
+
+## lowercase all letters toupper also works
+tolower(names(cameraData))
+
+## remove unwanted characters
+splitNames = strsplit(names(cameraData),"\\.")
+splitNames[[5]]
+
+splitNames[[6]]
+
+##lists
+mylist <- list(letters = c("A","b","c"), numbers = 1:3, matrix(1:25, ncol=5))
+head(mylist)
+
+mylist[1]
+
+mylist$letters
+
+mylist[[1]]
+
+## removing characters
+splitNames[[6]][1]
+
+firstElement <- function(x){x[1]}
+sapply(splitNames,firstElement)
+
+fileUrl1 <- "https://dl.dropboxusercontent.com/u/7710864/data/reviews-apr29.csv"
+fileUrl2 <- "https://dl.dropboxusercontent.com/u/7710864/data/solutions-apr29.csv"
+download.file(fileUrl1, destfile="./data/reviews.csv")
+download.file(fileUrl2, destfile ="./data/solutions.csv")
+reviews <- read.csv("./data/reviews.csv")
+solutions <- read.csv("./data/solutions.csv")
+head(reviews,2)
+
+names(reviews)
+## substitute characters find and replace
+sub("_","",names(reviews),)
+
+testName <- "this_is_a_test"
+##sub removes only one underscore
+sub("_","",testName)
+
+##gsub removes all
+gsub("_","",testName)
+
+##search for a string
+grep("Alameda",cameraData$intersection)
+##grepl vectors for true and false
+table(grepl("Alameda",cameraData$intersection))
+##subset
+cameraData2 <- cameraData[!grepl("Alameda",cameraData$intersection),]
+cameraData2
+
+##show the intersections
+grep("Alameda",cameraData$intersection,value=TRUE)
+
+grep("JeffStreet",cameraData$intersection)
+##double check to make sure value doesn't appear
+length(grep("JeffStreet",cameraData$intersection))
+
+library(stringr)
+nchar("Jeffrey Leek")
+#Extract a part of string
+substr("Jeffrey Leek",1,7)
+#combine two or more strings together (Concatenate)
+paste("Jeffrey","Leek")
+#combine with no spaces
+paste0("Jeffrey","Leek")
+
+##remove extra spaces (Trim)
+str_trim("Jeff     ")

@@ -1,0 +1,19 @@
+##Metacharacters and regular expressions
+
+## ^ represents beginning of the line, i.e. ^i think
+## $ represents the end of the line, i.e. morning$
+## search by characters regardless of capitalization [Bb][Uu][Ss][Hh]
+## Combinable ^[Ii] am
+## specify a range ^[0-9] or [a-zA-Z]
+## Character class [^?.]$ searches for anything NOT ending in . or ?
+## . can be used to refer to any character, i.e. 9.11 could be 9/11 or 9-11
+## | can be used as OR, as many as possible flood|earthquake|hurricane
+## can combine these as ^[Gg]ood|[Bb]ad this only searches for good at the front of the line, bad could land anywhere
+## constraints can change that ^([Gg]ood|[Bb]ad)
+## ? is used as an optional piece [Gg]eorge( [Ww]\.)? [Bb]ush
+## \ causes R to treat metacharacters as the actual character
+## * or + indicates repetition, * any number including none, + at least one of the item
+## {m,n} interval qualifiers, specify the minimum andn max number of matches
+## at least m not more than n
+## m is exact
+## m, at least m

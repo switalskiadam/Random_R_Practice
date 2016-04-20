@@ -1,0 +1,45 @@
+##Dates
+d1 = date()
+d1
+d2 = Sys.Date()
+d2
+
+##Formatting dates
+# %d = day as number
+# %a = abbreviated weekday
+# %A = unabbreviated weekday
+# %m = month (00-12)
+# %b = abbreviated month
+# %B = unabbreviated month
+# %y = 2 digit year
+# %Y = 4 digit year
+
+format(d2,"%a %b %d")
+
+## Creating dates
+x = c("1jan19060","2jan1960","31mar1960","30jul1960") 
+z= as.Date(x, "%d%b%y)")
+z[1]-z[2]
+as.numeric(z[1]-z[2])
+
+##converting to julian
+weekdays(d2)
+months(d2)
+julian(d2)
+
+##Lubridate
+library(lubridate)
+ymd("20140108")
+mdy("08/04/2013")
+dmy("03-04-2013")
+##TImes with lubridate
+ymd_hms("2011-08-03 10:15:03")
+##Set timezone
+ymd_hms("2011-08-03 10:15:03", tz="Pacific/Auckland")
+
+?Sys.timezone
+
+## different syntax for lubridate
+x = dmy(c("1jan2013","2jan2013","31mar2013","30jul2013"))
+wday(x[1])
+wday(x[1], label=TRUE)
